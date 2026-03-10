@@ -1,284 +1,1555 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Devcrud">
-    <title>Suraj Kumar | Resume</title>
-    <!-- font icons -->
+    <meta name="author" content="Suraj Kumar">
+    <meta name="description" content="Suraj Kumar - Full Stack Developer Resume">
+    <title>Suraj Kumar | Full Stack Developer</title>
+    
+    <!-- Font Awesome icons (primary) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Themify Icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + JohnDoe main styles -->
-    <link rel="stylesheet" href="assets/css/johndoe.css">
-</head>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- html2pdf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        /*==========================================
+        ROOT VARIABLES
+        ==========================================*/
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #475569;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
 
+        /*==========================================
+        GLOBAL STYLES
+        ==========================================*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /*==========================================
+        HEADER SECTION
+        ==========================================*/
+        .header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            /* standard + vendor for background-clip */
+            background: linear-gradient(135deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* fallback */
+        }
+
+        .header-mono {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        /* Social Icons */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .social-links .social-item {
+            display: inline-block;
+        }
+
+        .social-links .social-link {
+            color: white;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-links .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            border-color: transparent;
+        }
+
+        /*==========================================
+        NAVIGATION
+        ==========================================*/
+        .navbar {
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* PROFILE PIC: always show SK (since no real image) */
+        .nav-brand-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 2px solid var(--primary);
+        }
+
+        .nav-brand-text {
+            line-height: 1.3;
+        }
+
+        .nav-brand-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .nav-brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .nav-menu .nav-item {
+            list-style: none;
+        }
+
+        .nav-menu .nav-link {
+            color: var(--secondary);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-stats {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+        }
+
+        .nav-stat-item i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .nav-stat-item span {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .btn-download-nav {
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download-nav:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /*==========================================
+        BUTTONS
+        ==========================================*/
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /*==========================================
+        SECTIONS
+        ==========================================*/
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .bg-light {
+            background: var(--light);
+        }
+
+        /*==========================================
+        CARDS
+        ==========================================*/
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .card h5 {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .line {
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px 0;
+        }
+
+        /* Info List */
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list span:first-child {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .info-list span:last-child {
+            color: var(--secondary);
+        }
+
+        /* Expertise Items */
+        .expertise-item {
+            margin-bottom: 20px;
+        }
+
+        .expertise-item h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .expertise-item h6 i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .expertise-item p {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            padding-left: 24px;
+        }
+
+        /* Resume Cards */
+        .resume-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .resume-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .resume-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-item h6 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .company {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 3px;
+        }
+
+        .duration {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Skills */
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-item h6 {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .skill-item h6 span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            border-radius: 4px;
+        }
+
+        /* Language Grid */
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .language-item {
+            text-align: center;
+        }
+
+        .language-item h6 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 15px 20px;
+        }
+
+        .project-header h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .project-link {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .project-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .project-year {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /*==========================================
+        CONTACT SECTION
+        ==========================================*/
+        .contact-section {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+            background: var(--primary);
+        }
+
+        .contact-icon i {
+            font-size: 30px;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon i {
+            color: white;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .contact-card p {
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-card .contact-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 10px;
+        }
+
+        .contact-card .contact-action {
+            margin-top: 20px;
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card .contact-action:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        .availability-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: white;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .stat-item h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .stat-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .btn {
+            background: white;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+            font-weight: 600;
+            padding: 12px 35px;
+        }
+
+        .cta-section .btn:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer p {
+            margin: 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /*==========================================
+        ENHANCED PROFILE MODAL
+        ==========================================*/
+        .modal-content {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--dark), #1e293b);
+            color: white;
+            border: none;
+            padding: 25px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .modal-header .close {
+            color: white;
+            opacity: 0.8;
+            text-shadow: none;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-header .close:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-title i {
+            color: var(--primary);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        /* Profile Header in Modal */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-info h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .profile-info p {
+            font-size: 1rem;
+            color: var(--primary);
+            margin: 5px 0 0;
+        }
+
+        /* Profile Stats */
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .profile-stat-item {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .profile-stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-stat-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .profile-stat-item .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: block;
+        }
+
+        .profile-stat-item .stat-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Profile Sections */
+        .profile-section {
+            margin-bottom: 25px;
+        }
+
+        .profile-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-section h4 i {
+            color: var(--primary);
+        }
+
+        .profile-section p {
+            color: var(--secondary);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        /* Skill Tags */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            color: var(--primary);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Achievement List */
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .achievement-list li:last-child {
+            border-bottom: none;
+        }
+
+        .achievement-list li i {
+            color: var(--success);
+            font-size: 1rem;
+        }
+
+        /* Contact Info Grid */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+        }
+
+        .contact-info-item i {
+            width: 35px;
+            height: 35px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info-item .contact-detail {
+            flex: 1;
+        }
+
+        .contact-info-item .contact-detail .label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            display: block;
+        }
+
+        .contact-info-item .contact-detail .value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        /* Social Links in Modal */
+        .modal-social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .modal-social-link {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .modal-social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .modal-footer {
+            padding: 20px 30px;
+            border-top: 1px solid var(--border);
+            background: #f8fafc;
+        }
+
+        .modal-footer .btn {
+            padding: 10px 25px;
+            border-radius: 8px;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /*==========================================
+        RESPONSIVE DESIGN
+        ==========================================*/
+        @media (max-width: 992px) {
+            .nav-stats {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 20px 30px;
+                gap: 15px;
+                box-shadow: var(--shadow-lg);
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu .nav-item {
+                width: 100%;
+            }
+
+            .nav-menu .nav-link {
+                display: block;
+                padding: 12px 15px;
+                font-size: 1.1rem;
+                border-radius: 6px;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu .nav-link:hover {
+                background: var(--light);
+                color: var(--primary);
+                transform: translateX(5px);
+            }
+
+            .nav-menu .nav-link:after {
+                display: none;
+            }
+
+            .nav-right {
+                gap: 10px;
+            }
+
+            .btn-download-nav span {
+                display: none;
+            }
+
+            .btn-download-nav i {
+                margin: 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-section .col-md-6 {
+                margin-bottom: 20px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <!-- <a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a> -->
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Generating PDF Resume...</p>
+    </div>
+
+    <!-- Header Section -->
     <header class="header">
         <div class="container">
-            <ul class="social-icons pt-3">
-                <li class="social-item"><a class="social-link text-light"
-                        href="www.linkedin.com/in/suraj-kumar-ba1724309"><i class="ti-linkedin"
-                            aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="https://github.com/suraj-kumar-sunny"><i
-                            class="ti-github" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook"
-                            aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter"
-                            aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google"
-                            aria-hidden="true"></i></a></li>
-            </ul>
             <div class="header-content">
+                <ul class="social-links">
+                    <li class="social-item">
+                        <a class="social-link" href="https://www.linkedin.com/in/suraj-kumar-ba1724309" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a class="social-link" href="https://github.com/suraj-kumar-sunny" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a class="social-link" href="mailto:sksgtg@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </li>
+                    <li class="social-item">
+                        <a class="social-link" href="tel:+919041115118">
+                            <i class="fas fa-mobile-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+                
                 <h4 class="header-subtitle">Hello, I am</h4>
                 <h1 class="header-title">Suraj Kumar</h1>
-                <h6 class="header-mono">Dotnet | Full Stack Developer</h6>
-                <button class="btn btn-primary btn-rounded" id="downloadBtn"><i class="ti-printer pr-2"></i>Print
-                    Resume</button> 
+                <h6 class="header-mono">Full Stack Developer | .NET Specialist</h6>
+                
+                <button class="btn btn-primary" id="downloadResumeBtn">
+                    <i class="fas fa-download"></i>
+                    Download Resume (PDF)
+                </button>
             </div>
         </div>
     </header>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
-        <div class="container">
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#resume" class="nav-link">Resume</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav brand">
-                    <img src="assets/imgs/avatar.jpg" alt="" class="brand-img">
-                    <li class="brand-txt">
-                        <h5 class="brand-title">Suraj Kumar</h5>
-                        <div class="brand-subtitle">Dotnet | Full Stack Developer</div>
-                    </li>
-                </ul>
-                <!-- <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#portfolio" class="nav-link">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#blog" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item last-item">
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </li>
-                </ul> -->
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <div class="nav-brand-img">SK</div>
+                <div class="nav-brand-text">
+                    <h5 class="nav-brand-title">Suraj Kumar</h5>
+                    <div class="nav-brand-subtitle">Full Stack Developer</div>
+                </div>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#resume" class="nav-link">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-stats">
+                    <div class="nav-stat-item">
+                        <i class="ti-briefcase"></i>
+                        <span>3+</span> Years
+                    </div>
+                    <div class="nav-stat-item">
+                        <i class="ti-layers-alt"></i>
+                        <span>11+</span> Projects
+                    </div>
+                </div>
+                <button class="btn-download-nav" id="navDownloadBtn">
+                    <i class="ti-download"></i>
+                    <span>PDF</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
-        <div id="about" class="row about-section">
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Who am I ?</h3>
-                <span class="line mb-5"></span>
-                <h5 class="mb-3">A Software / Dotnet Developer Located In Patiala</h5>
-                <p class="mt-20">To obtain a position that will allow me to utilize my technical skills, experience and
-                    willingness to learn is making an organization successful.</p>
-                <!-- <button class="btn btn-outline-danger" id="downloadBtn"><i class="icon-down-circled2 "></i>Download My CV</button> -->
-            </div>
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Personal Info</h3>
-                <span class="line mb-5"></span>
-                <ul class="mt40 info list-unstyled">
-                    <li><span>Birthdate</span> : 20/01/1994</li>
-                    <li><span>Email</span> : sksgtg@gmail.com</li>
-                    <li><span>Phone</span> : +91 904-111-5118</li>
-                    <li><span>Skype</span> : live:sksgtg </li>
-                    <li><span>Address</span> : #F-11/1, Ranjeet Nagar, Patiala - 147001.</li>
-                </ul>
-                <ul class="social-icons pt-3">
-                    <li class="social-item"><a class="social-link" href="www.linkedin.com/in/suraj-kumar-ba1724309"><i
-                                class="ti-linkedin" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="https://github.com/suraj-kumar-sunny"><i
-                                class="ti-github" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-facebook"
-                                aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-twitter"
-                                aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-google"
-                                aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-instagram"
-                                aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">My Expertise</h3>
-                <span class="line mb-5"></span>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-widget icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Database Management</h6>
-                        <p class="subtitle"> Handling different types of database based on project, ie. MS SQL Server,
-                            Mysql, MongoDb.</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-paint-bucket icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Web Development</h6>
-                        <p class="subtitle">Created multiple websites from scratch</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-stats-up icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Dotnet Developer</h6>
-                        <p class="subtitle">Handled backend code with asp.net framework, asp.net core and web API.</p>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!--Resume Section-->
-    <section class="section" id="resume">
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
+
+    <!-- About Section -->
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="mb-5"><span class="text-danger">My</span> Resume</h2>
+            <h2 class="section-title">About Me</h2>
+            
             <div class="row">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Expertise</h4>
-                                <span class="line"></span>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6>Rapid Workforce Solution</h6>
-                            <h6 class="title text-danger">2023 - Present</h6>
-                            <P>Software Engineer</P>
-                            <P class="subtitle">Working as a Software Engineer. Backend, Frontend code and
-                                Database with C# language, HTML Razor Syntax, MS SQL Server. Creating application for
-                                Governement Projects.</P>
-                            <hr>
-                            <h6>Belwo Inc.</h6>
-                            <h6 class="title text-danger">2021 - 2023</h6>
-                            <P>Associate Software Developer</P>
-                            <P class="subtitle">Working as a Dotnet Developer. Handling Backend, Frontend code and
-                                Database with C# language, HTML Razor Syntax, MS SQL Server. Creating application for
-                                Automation Tools.</P>
-                            <hr>
-                            <h6>Divergent Infosoft Tech.</h6>
-                            <h6 class="title text-danger">2019 - 2020</h6>
-                            <P>Technical Support Engineer</P>
-                            <P class="subtitle">Worked as a Technical Support Engineer. Manage and Manipulate Database
-                                of FIITJEE Employees. Manage Excel Reports. Handle and modify front-end.</P>
+                        <h3>Who am I?</h3>
+                        <div class="line"></div>
+                        <h5>A Results-Driven Full Stack Developer</h5>
+                        <p>Results-driven Software Engineer with 3+ years of experience in full-stack development using C#, ASP.NET Core, JavaScript, SQL, and modern frameworks. Proven track record in delivering scalable web applications across multiple domains.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                        <h3>Personal Info</h3>
+                        <div class="line"></div>
+                        
+                        <ul class="info-list">
+                            <li><span>Birthdate</span> <span>20/01/1994</span></li>
+                            <li><span>Email</span> <span>sksgtg@gmail.com</span></li>
+                            <li><span>Phone</span> <span>+91 904-111-5118</span></li>
+                            <li><span>Location</span> <span>Patiala, Punjab</span></li>
+                            <li><span>Availability</span> <span>Open to Work</span></li>
+                        </ul>
+                        
+                        <div class="social-links justify-content-start mt-3">
+                            <a href="https://www.linkedin.com/in/suraj-kumar-ba1724309" target="_blank" class="social-link" style="background: var(--primary); color: white; width: 35px; height: 35px;">
+                                <i class="ti-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/suraj-kumar-sunny" target="_blank" class="social-link" style="background: var(--primary); color: white; width: 35px; height: 35px;">
+                                <i class="ti-github"></i>
+                            </a>
+                            <a href="mailto:sksgtg@gmail.com" class="social-link" style="background: var(--primary); color: white; width: 35px; height: 35px;">
+                                <i class="ti-email"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                
+                <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Education</h4>
-                                <span class="line"></span>
-                            </div>
+                        <h3>My Expertise</h3>
+                        <div class="line"></div>
+                        
+                        <div class="expertise-item">
+                            <h6><i class="ti-desktop"></i> Web Development</h6>
+                            <p>Creating scalable web applications using ASP.NET Core, MVC, Web API with modern frontend technologies.</p>
                         </div>
-                        <div class="card-body">
-                            <!-- <h6 class="title text-danger">2017 - Present</h6>
-                            <P>B.E Computer Engineering</P>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error corrupti recusandae obcaecati odit repellat ducimus cum, minus tempora aperiam at.</P>
-                            <hr> -->
-                            <h6 class="title text-danger">2015 - 2019</h6>
-                            <P>Bachelor of Engineering</P>
-                            <P class="subtitle">Completed BE Degree with Computer Science and Engineering with 6.5 CGPA
-                            </P>
-                            <hr>
-                            <h6 class="title text-danger"></h6>
-                            <P>High School Degree</P>
-                            <P class="subtitle">Completed Intermediate from PSEB with 65 percentage of marks.</P>
-
+                        
+                        <div class="expertise-item">
+                            <h6><i class="ti-database"></i> Database Management</h6>
+                            <p>Expertise in MS SQL Server, MongoDB with optimized queries and database design.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Skills</h4>
-                                <span class="line"></span>
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                            <h6>Dotnet &amp; Dotnet Core &amp; Web API</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>HTML5 &amp; CSS3</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>JavaScript / JQuery</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 85%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>React / Angular</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%"
-                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>C# / PHP</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 95%"
-                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>SQL / MongoDb</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%"
-                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <!-- <h6>MongoDb</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Languages</h4>
-                                <span class="line"></span>
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                            <h6>English</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Hindi</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 95%"
-                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Punjabi</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 95%"
-                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Tamil</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 40%"
-                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        
+                        <div class="expertise-item">
+                            <h6><i class="ti-puzzle"></i> API Development</h6>
+                            <p>Building robust RESTful APIs with proper authentication, authorization, and documentation.</p>
                         </div>
                     </div>
                 </div>
@@ -286,648 +1557,921 @@
         </div>
     </section>
 
-    <section class="section bg-dark text-center">
+    <!-- Resume Section -->
+    <section id="resume" class="section bg-light">
         <div class="container">
-            <div class="row text-center">
-                <div class="col-md-6 col-lg-3">
-                    <div class="row ">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-alarm-clock icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">3+</h1>
-                            <p class="text-light mb-1">Years Worked</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-layers-alt icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">6</h1>
-                            <p class="text-light mb-1">Projects Finished</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-face-smile icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">200K</h1>
-                            <p class="text-light mb-1">Happy Clients</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-heart-broken icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">2k</h1>
-                            <p class="text-light mb-1">Coffee Drinked</p>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="service">
-        <div class="container">
-            <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Projects</h2>
+            <h2 class="section-title">My Resume</h2>
+            
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                        <div class="card-header has-icon">
-                            <h6>File Consolidation Tool |
-                                <a class="" href="https://fct.dsttesting1.com/" target="_blank"><small>Link</small></a>    
-                            </h6>
+                <div class="col-lg-6">
+                    <div class="resume-card">
+                        <h4>Work Experience</h4>
+                        <div class="line"></div>
+                        
+                        <div class="experience-item">
+                            <h6>Developer - I</h6>
+                            <div class="company">Evon Technologies, Dehradun</div>
+                            <div class="duration">September 2025 - Present</div>
+                            <p class="subtitle">Translate client requirements into efficient technical solutions. Improve system performance and stability through optimization and bug fixes.</p>
                         </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">2024</h5>
-                            <P class="subtitle">It is a File Consolidation Tool. It imports multiple excel files data in
-                                SQL Database based on column
-                                name. Excel files read by using a plugin EPPlus. There is multiple logics going to be
-                                used for the Calculation of
-                                different types of amounts and reading file types and file path creation and download
-                                files in multiple formats
-                                handled by this tool.</P>
+                        
+                        <div class="experience-item">
+                            <h6>Dotnet Developer (E-2)</h6>
+                            <div class="company">MBD Group, Delhi</div>
+                            <div class="duration">May 2025 - September 2025</div>
+                            <p class="subtitle">Developed full-stack applications and APIs. Integrated Salesforce API for ERP, HRMS, and TADA systems. Managed server deployments following Agile methodologies.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                        <div class="card-header has-icon">
-                            <h6>Comparison Tool</h6>
+                        
+                        <div class="experience-item">
+                            <h6>Software Developer</h6>
+                            <div class="company">Rapid Workforce Solutions, Delhi</div>
+                            <div class="duration">October 2024 - April 2025</div>
+                            <p class="subtitle">Led backend and frontend development using C#, Razor, SQL Server for APMS project management system.</p>
                         </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">2023</h5>
-                            <P class="subtitle">It is a Comparison Tool. It compares the two pdf, CSV or text file. The
-                                comparison is performed by Java
-                                Tool. Other logical functionalities like file analyser, file path configuration, data
-                                saving like comparison history,
-                                validations are handled by this Tool</P>
+                        
+                        <div class="experience-item">
+                            <h6>Dotnet Developer</h6>
+                            <div class="company">Belwo Services Inc., Mohali</div>
+                            <div class="duration">November 2021 - October 2023</div>
+                            <p class="subtitle">Developed Automation Engine Tool for label printing. Improved file processing accuracy by 30% through data-driven features.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                        <div class="card-header has-icon">
-                            <h6>Automation Tool</h6>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">2022</h5>
-                            <P class="subtitle"> It is an Automation Tool. In this project label printing performed.
-                                This label is client based with
-                                barcode. Every client has different application and all applications has different
-                                services.
-                                Pdf, CSV or text type files are shared by client in a particular folder in the server
-                                and application starts analysing the
-                                folder and take this file, based on file data label has been generated by this Tool and
-                                send it to the configured email.</P>
+                        
+                        <div class="experience-item">
+                            <h6>Technical Support Engineer</h6>
+                            <div class="company">Divergent Infosoft, Delhi</div>
+                            <div class="duration">December 2019 - May 2020</div>
+                            <p class="subtitle">Managed FIITJEE database systems and generated Excel-based reports. Provided technical support and front-end modifications.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                        <div class="card-header has-icon">
-                            <h6>Job Portal |
-                                <a class="" href="https://www.saucedit.com/" target="_blank"><small>Link</small></a>  </h6>
+                
+                <div class="col-lg-6">
+                    <div class="resume-card">
+                        <h4>Education</h4>
+                        <div class="line"></div>
+                        
+                        <div class="experience-item">
+                            <h6>Bachelor of Engineering</h6>
+                            <div class="company">Anna University</div>
+                            <div class="duration">2015 - 2019</div>
+                            <p class="subtitle">Computer Science and Engineering | CGPA: 6.5</p>
                         </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">2021</h5>
-                            <P class="subtitle">
-                                It is a Job applying platform. This portal is using in Australia and it is created under Australian Laws and constitutions.
-                            </P>
+                    </div>
+                    
+                    <div class="resume-card">
+                        <h4>Technical Skills</h4>
+                        <div class="line"></div>
+                        
+                        <div class="skill-item">
+                            <h6>ASP.NET Core & .NET <span>95%</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <h6>C# & MVC <span>95%</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <h6>Web API & Entity Framework <span>90%</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <h6>React & Angular <span>80%</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <h6>JavaScript & jQuery <span>85%</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <h6>MS SQL Server & MongoDB <span>90%</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resume-card">
+                        <h4>Languages</h4>
+                        <div class="line"></div>
+                        
+                        <div class="language-grid">
+                            <div class="language-item">
+                                <h6>English</h6>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="language-item">
+                                <h6>Hindi</h6>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="language-item">
+                                <h6>Punjabi</h6>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="language-item">
+                                <h6>Tamil</h6>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 40%"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                        <div class="card-header has-icon">
-                            <h6>HRMS</h6>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">2021</h5>
-                            <P class="subtitle">
-                                It is a Human Resource Management System Application. In this application handling attendance, leaves and employees details. 
-                                In attendance section having different slabs which managing daily attendance time. And Payroll of all employees is also handled by 
-                                this application and generating reports.
-                            </P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                        <div class="card-header has-icon">
-                            <h6>Door Event Detection with Android Application</h6>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">2019</h5>
-                            <P class="subtitle"> This project is based on Smart Home Security. In this project we create
-                                a smart camera on main door
-                                of house and in case nobody in the house the camera will get the visual of guest and
-                                send it to android mobile app
-                                to anywhere in the world of owner who is registered with specific system.</P>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-bar-chart text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Consectetur</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-support text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Veritatis</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
 
-    <!-- <section class="section bg-custom-gray" id="price">
+    <!-- Stats Section -->
+    <section class="stats-section">
         <div class="container">
-            <h1 class="mb-5"><span class="text-danger">Packs</span> Pricing</h1>
-            <div class="row align-items-center">
+            <div class="row">
                 <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center mb-4">
-                        <h3 class="price-card-title">Free</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">0</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">5 <span class="text-muted">Project</span></li>
-                            <li class="list-item">1GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item"><span class="text-muted">No Domain</span></li>
-                            <li class="list-item">1 <span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
+                    <div class="stat-item">
+                        <i class="ti-alarm-clock"></i>
+                        <h1>3+</h1>
+                        <p>Years Experience</p>
                     </div>
                 </div>
+                
                 <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center mb-4">
-                        <h3 class="price-card-title">Basic</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">10</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">50 <span class="text-muted">Project</span></li>
-                            <li class="list-item">10GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item">1<span class="text-muted">Domain</span></li>
-                            <li class="list-item">5 <span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
+                    <div class="stat-item">
+                        <i class="ti-layers-alt"></i>
+                        <h1>11+</h1>
+                        <p>Projects Completed</p>
                     </div>
                 </div>
+                
                 <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center price-card-requried mb-4">
-                        <h3 class="price-card-title">Exclusive</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">25</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">150 <span class="text-muted">Project</span></li>
-                            <li class="list-item">15GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item">5<span class="text-muted"> Domain</span></li>
-                            <li class="list-item">15<span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
+                    <div class="stat-item">
+                        <i class="ti-user"></i>
+                        <h1>5+</h1>
+                        <p>Companies Worked</p>
                     </div>
                 </div>
+                
                 <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center mb-4">
-                        <h3 class="price-card-title">Pro</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">99</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">500 <span class="text-muted">Project</span></li>
-                            <li class="list-item">1000GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item">10<span class="text-muted"> Domain</span></li>
-                            <li class="list-item">Unlimite<span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
+                    <div class="stat-item">
+                        <i class="ti-check-box"></i>
+                        <h1>30%</h1>
+                        <p>Performance Boost</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section> -->
-    <section class="section bg-dark py-5">
-        <div class="container text-center">
-            <h2 class="text-light mb-5 font-weight-normal">I am Available for Work Onsite, Remote and Hybrid</h2>
-            <button class="btn bg-primary w-lg" data-toggle="modal" data-target="#profileModal">Hire me</button>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Key Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>CMS: Customer Management System</h6>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">Feb 2025 - Present | Developer</div>
+                        <p class="project-description">Enterprise web application for managing customer data, interactions, and business workflows. Features secure data handling and API-driven communication.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET Core</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>DMS: TRV Portal (TVS)</h6>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">Dec 2024 - Jan 2025 | Developer</div>
+                        <p class="project-description">Dealer Management System with authentication, authorization, and approval workflows for TVS dealers.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET Core</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>Audit Para Monitoring System</h6>
+                        <a href="https://apms.nic.in/" class="project-link" target="_blank">apms.nic.in</a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">Oct 2024 - Apr 2025 | Developer</div>
+                        <p class="project-description">Government web application for audit paras validation and monitoring across Central Ministries.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Razor</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>IMBDIAN: HRMS Portal</h6>
+                        <a href="https://www.imbdian.com/" class="project-link" target="_blank">imbdian.com</a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">May 2024 - Jun 2025 | Engineer - 2</div>
+                        <p class="project-description">HRMS platform for employee information, permissions, and role-based access control.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Razor</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>MBD TADA</h6>
+                        <a href="https://tada.mbdgroup.com/" class="project-link" target="_blank">tada.mbdgroup.com</a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">May 2024 - Jun 2025 | Engineer - 2</div>
+                        <p class="project-description">Travel Allowance & Daily Allowance management system for sales and marketing teams.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Web Forms</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>File Consolidation Tool</h6>
+                        <a href="https://fct.dsttesting1.com/" class="project-link" target="_blank">fct.dsttesting1.com</a>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">Jan 2024 - Mar 2024 | Developer</div>
+                        <p class="project-description">Web-based tool to consolidate data from multiple Excel files into structured output.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET Core</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Razor</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>PDF Comparison Application</h6>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">Jan 2023 - May 2023 | Developer</div>
+                        <p class="project-description">In-house application to compare two PDF files and highlight variations using Java JAR integration.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET Core</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Razor</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>Australian Recruitment Portal</h6>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">May 2023 - Aug 2023 | Developer</div>
+                        <p class="project-description">Recruitment platform for job postings, candidate applications, and employer interactions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET MVC</span>
+                            <span class="tech-tag">Entity Framework</span>
+                            <span class="tech-tag">C#</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h6>Label Printing Engine</h6>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-year">Nov 2021 - Oct 2023 | Developer</div>
+                        <p class="project-description">Automation tool for complex label printing workflows and client-specific business logic.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ASP.NET MVC</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Razor</span>
+                            <span class="tech-tag">MS SQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-     <!-- Modal for Profile Details -->
-     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Information</h2>
+            
+            <div class="contact-grid">
+                <!-- Email Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="ti-email"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>sksgtg@gmail.com</p>
+                    <p class="contact-label">Primary Email</p>
+                    <a href="mailto:sksgtg@gmail.com" class="contact-action">
+                        Send Message <i class="ti-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Phone Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="ti-mobile"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>+91 904-111-5118</p>
+                    <p class="contact-label">Available 9AM - 6PM</p>
+                    <a href="tel:+919041115118" class="contact-action">
+                        Call Now <i class="ti-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Location Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="ti-location-pin"></i>
+                    </div>
+                    <h3>Location</h3>
+                    <p>Patiala, Punjab</p>
+                    <p class="contact-label">India</p>
+                    <a href="https://maps.google.com/?q=Patiala,Punjab" target="_blank" class="contact-action">
+                        View Map <i class="ti-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Availability Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="ti-timer"></i>
+                    </div>
+                    <h3>Availability</h3>
+                    <div class="availability-badge">
+                        <i class="ti-check"></i> Open to Work
+                    </div>
+                    <p class="contact-label">Full-time, Part-time, Contract</p>
+                    <a href="#" class="contact-action" data-toggle="modal" data-target="#profileModal">
+                        View Full Profile <i class="ti-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="ti-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Connect Professionally</p>
+                    <p class="contact-label">500+ Connections</p>
+                    <a href="https://www.linkedin.com/in/suraj-kumar-ba1724309" target="_blank" class="contact-action">
+                        Visit Profile <i class="ti-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- GitHub Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="ti-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>View Code & Projects</p>
+                    <p class="contact-label">11+ Repositories</p>
+                    <a href="https://github.com/suraj-kumar-sunny" target="_blank" class="contact-action">
+                        Follow <i class="ti-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p>Available for Full-time, Part-time, and Contract opportunities.</p>
+            <button class="btn" data-toggle="modal" data-target="#profileModal">
+                <i class="ti-user"></i>
+                View Full Profile & Contact
+            </button>
+        </div>
+    </section>
+
+    <!-- Enhanced Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="profileModalLabel">Suraj Kumar's Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <h5 class="modal-title">
+                        <i class="ti-user"></i>
+                        Suraj Kumar - Professional Profile
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
                     </button>
                 </div>
+                
                 <div class="modal-body">
-                    <h4>About Me</h4>
-                    <p>Hello! I am Suraj Kumar, a passionate developer skilled in frontend and backend technologies...</p>
-                    <h4>Skills</h4>
-                    <ul>
-                        <li>HTML, CSS, JavaScript</li>
-                        <li>React, Angular</li>
-                        <li>Dotnet, Dotnet Core, API</li>
-                        <li>Database Management (MS SQL, MySQL, MongoDB)</li>
-                    </ul>
-                    <h4>Experience</h4>
-                    <p>3 years of experience in building responsive, user-friendly web applications...</p>
-                    <h4>Contact Info</h4>
-                    <p>Email: sksgtg@gmail.com</p>
-                    <p>Phone: +919041115118</p>
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            SK
+                        </div>
+                        <div class="profile-info">
+                            <h2>Suraj Kumar</h2>
+                            <p>Full Stack Developer | .NET Specialist</p>
+                            <div class="modal-social-links">
+                                <a href="https://www.linkedin.com/in/suraj-kumar-ba1724309" target="_blank" class="modal-social-link">
+                                    <i class="ti-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/suraj-kumar-sunny" target="_blank" class="modal-social-link">
+                                    <i class="ti-github"></i>
+                                </a>
+                                <a href="mailto:sksgtg@gmail.com" class="modal-social-link">
+                                    <i class="ti-email"></i>
+                                </a>
+                                <a href="tel:+919041115118" class="modal-social-link">
+                                    <i class="ti-mobile"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Stats -->
+                    <div class="profile-stats">
+                        <div class="profile-stat-item">
+                            <i class="ti-briefcase"></i>
+                            <span class="stat-value">3+ Years</span>
+                            <span class="stat-label">Experience</span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <i class="ti-layers-alt"></i>
+                            <span class="stat-value">11+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="profile-stat-item">
+                            <i class="ti-face-smile"></i>
+                            <span class="stat-value">5+</span>
+                            <span class="stat-label">Companies</span>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="profile-section">
+                        <h4><i class="ti-user"></i> About Me</h4>
+                        <p>Results-driven Software Engineer with 3+ years of experience in full-stack development using C#, ASP.NET Core, JavaScript, SQL, and modern frameworks. Proven track record in delivering scalable web applications across multiple domains including government, enterprise, and e-commerce sectors. Passionate about writing clean code and solving complex problems.</p>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div class="profile-section">
+                        <h4><i class="ti-panel"></i> Technical Skills</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ASP.NET Core</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">.NET</span>
+                            <span class="skill-tag">MVC</span>
+                            <span class="skill-tag">Web API</span>
+                            <span class="skill-tag">Entity Framework</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">jQuery</span>
+                            <span class="skill-tag">MS SQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">HTML5/CSS3</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Razor</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Jira</span>
+                            <span class="skill-tag">GitHub</span>
+                        </div>
+                    </div>
+
+                    <!-- Key Achievements -->
+                    <div class="profile-section">
+                        <h4><i class="ti-medall"></i> Key Achievements</h4>
+                        <ul class="achievement-list">
+                            <li>
+                                <i class="ti-check"></i>
+                                Improved file processing accuracy by 30% through automation features
+                            </li>
+                            <li>
+                                <i class="ti-check"></i>
+                                Successfully delivered 11+ production-ready projects across multiple domains
+                            </li>
+                            <li>
+                                <i class="ti-check"></i>
+                                Experience with high-traffic government applications (APMS)
+                            </li>
+                            <li>
+                                <i class="ti-check"></i>
+                                Integrated Salesforce API with ERP and HRMS systems
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="profile-section">
+                        <h4><i class="ti-mobile"></i> Contact Information</h4>
+                        <div class="contact-info-grid">
+                            <div class="contact-info-item">
+                                <i class="ti-email"></i>
+                                <div class="contact-detail">
+                                    <span class="label">Email</span>
+                                    <span class="value">sksgtg@gmail.com</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="ti-mobile"></i>
+                                <div class="contact-detail">
+                                    <span class="label">Phone</span>
+                                    <span class="value">+91 904-111-5118</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="ti-location-pin"></i>
+                                <div class="contact-detail">
+                                    <span class="label">Location</span>
+                                    <span class="value">Patiala, Punjab</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="ti-timer"></i>
+                                <div class="contact-detail">
+                                    <span class="label">Availability</span>
+                                    <span class="value">Open to Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="ti-linkedin"></i>
+                                <div class="contact-detail">
+                                    <span class="label">LinkedIn</span>
+                                    <span class="value">/in/suraj-kumar</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <i class="ti-github"></i>
+                                <div class="contact-detail">
+                                    <span class="label">GitHub</span>
+                                    <span class="value">/suraj-kumar-sunny</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="modalDownloadBtn">
+                        <i class="ti-download"></i>
+                        Download Resume
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Portfolio Section -->
-    <!-- <section class="section bg-custom-gray" id="portfolio">
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
-            <div class="portfolio">
-                <div class="filters">
-                    <a href="#" data-filter=".new" class="active">
-                        New
-                    </a>
-                    <a href="#" data-filter=".advertising">
-                        Advertising
-                    </a>
-                    <a href="#" data-filter=".branding">
-                        Branding
-                    </a>
-                    <a href="#" data-filter=".web">
-                        Web
-                    </a>
-                </div>
-                <div class="portfolio-container"> 
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/web-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/web-1.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>   
-                        </div>             
-                    </div>
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/web-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/web-2.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div> 
-                        </div>                         
-                    </div>
-                    <div class="col-md-6 col-lg-4 advertising new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/advertising-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                         
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/advertising-2.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSTISING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>    
-                        </div>              
-                    </div> 
-                    <div class="col-md-6 col-lg-4 web">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/web-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/web-4.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 advertising"> 
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/advertising-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                               
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/advertising-1.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSITING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                       
-                    </div> 
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/web-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
-                           <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/web-3.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>
-                    <div class="col-md-6 col-lg-4 advertising new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/advertising-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">       
-                           <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/advertising-3.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSITING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                       
-                    </div> 
-                    <div class="col-md-6 col-lg-4 advertising new"> 
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/advertising-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">            
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/advertising-4.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERTISING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>
-                                
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/branding-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                        
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/branding-1.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div> 
-                        </div>
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/branding-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/branding-2.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding new">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/branding-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">   
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/branding-3.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                    
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/branding-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                      
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/branding-4.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                      
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="assets/imgs/branding-5.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">          
-                            <div class="content-holder">
-                                <a class="img-popup" href="assets/imgs/branding-5.jpg"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                   
-                    </div>
-                </div> 
-            </div>  
-        </div>            
-    </section> -->
-    <!-- End of portfolio section -->
-
-    <!-- <section class="section" id="blog">
-        <div class="container">
-            <h2 class="mb-5">Latest <span class="text-danger">News</span></h2>
-            <div class="row">
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="assets/imgs/blog1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h6 class="title">Consectetur adipisicing elit</h6>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 234</a>
-                            <a href="#"><i class="ti-comment"></i> 123</a>
-                        </p>
-                        
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt qui sit velit delectus voluptates, repellat ipsum culpa id deleniti. Rerum debitis facilis accusantium neque numquam mollitia modi quasi distinctio.</p>
-
-                        <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>
-                        <p>Magnam in repellat enim harum omnis aperiam! Explicabo illo, commodi, dolor blanditiis cupiditate harum nisi vero accusamus laudantium voluptatibus dolores quae obcaecati.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="assets/imgs/blog2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h6 class="title">Explicabo illo</h6>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 456</a>
-                            <a href="#"><i class="ti-comment"></i> 264</a>
-                        </p>
-                        
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="assets/imgs/blog3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h4 class="title">Porro Quisqua</h4>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 431</a>
-                            <a href="#"><i class="ti-comment"></i> 312</a>
-                        </p>
-                        
-                        <p> consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section> -->
-
-    <!-- <div class="section contact" id="contact">
-        <div id="map" class="map"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="contact-form-card">
-                        <h4 class="contact-title">Send a message</h4>
-                        <form action="">
-                            <div class="form-group">
-                                <input  class="form-control" type="text" placeholder="Name *" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="email" placeholder="Email *" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id=" placeholder="Message *" rows="7" required></textarea>
-                            </div>
-                            <div class="form-group ">
-                                <button type="submit" class="form-control btn btn-primary" >Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="contact-info-card">
-                        <h4 class="contact-title">Get in touch</h4>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-mobile icon-md"></i>
-                            </div>
-                            <div class="col-10 ">
-                                <h6 class="d-inline">Phone : <br> <span class="text-muted">+ (123) 456-789</span></h6>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-map-alt icon-md"></i>
-                            </div>
-                            <div class="col-10">
-                                <h6 class="d-inline">Address :<br> <span class="text-muted">12345 Fake ST NoWhere AB Country.</span></h6>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-envelope icon-md"></i>
-                            </div>
-                            <div class="col-10">
-                                <h6 class="d-inline">Email :<br> <span class="text-muted">info@website.com</span></h6>
-                            </div>
-                        </div>
-                        <ul class="social-icons pt-4">
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
-                        </ul> 
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div> -->
-    <footer class="footer py-3">
-        <div class="container">
-            <p class="small mb-0 text-light">
-                Suraj Kumar &copy;
-                <script>document.write(new Date().getFullYear())</script>
-            </p>
+            <p>Suraj Kumar &copy; <script>document.write(new Date().getFullYear())</script> | Full Stack Developer | Built with <i class="ti-heart" style="color: var(--danger);"></i> in India</p>
         </div>
     </footer>
 
-    <!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- bootstrap 3 affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- Isotope  -->
-    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
-
-    <!-- Google mpas -->
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
-
-    <!-- JohnDoe js -->
-    <script src="assets/js/johndoe.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        document.getElementById('downloadBtn').addEventListener('click', function () {
-            const pdfUrl = './assets/file/CV.pdf';
+        //==========================================
+        // Mobile Menu Toggle
+        //==========================================
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
 
-            const link = document.createElement('a');
-            link.href = pdfUrl;
-            link.download = 'file.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.nav-menu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        //==========================================
+        // PDF Resume Generation (ATS-friendly, full info, 5% margins)
+        //==========================================
+        async function generatePDFResume() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('active');
+
+            try {
+                // Build comprehensive ATS-friendly PDF content (can span 2-3 pages)
+                const resumeContent = document.createElement('div');
+                resumeContent.innerHTML = `
+                    <div style="font-family: 'Inter', Arial, sans-serif; max-width: 100%; padding: 0; color: #0f172a; line-height: 1.5; background: white;">
+                        <!-- 5% margins on all sides: use wrapper with padding -->
+                        <div style="padding: 5%;">
+                            <!-- Header -->
+                            <div style="text-align: center; margin-bottom: 25px; border-bottom: 3px solid #2563eb; padding-bottom: 15px;">
+                                <h1 style="font-size: 36px; margin: 0; font-weight: 700; color: #0f172a;">SURAJ KUMAR</h1>
+                                <p style="font-size: 20px; color: #2563eb; margin: 5px 0;">Full Stack Developer | .NET Specialist</p>
+                                <p style="font-size: 14px; color: #475569; margin: 3px 0;">
+                                    📧 sksgtg@gmail.com | 📱 +91 904-111-5118 | 📍 Patiala, Punjab
+                                </p>
+                                <p style="font-size: 14px; color: #475569;">
+                                    🔗 linkedin.com/in/suraj-kumar-ba1724309 | github.com/suraj-kumar-sunny
+                                </p>
+                            </div>
+
+                            <!-- Professional Summary -->
+                            <div style="margin-bottom: 20px;">
+                                <h2 style="font-size: 20px; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 4px; margin: 0 0 8px 0;">PROFESSIONAL SUMMARY</h2>
+                                <p style="font-size: 14px; margin: 0; color: #334155;">Results-driven Software Engineer with 3+ years of experience in full-stack development using C#, ASP.NET Core, JavaScript, SQL, and modern frameworks. Proven track record in delivering scalable web applications across government, enterprise, and e-commerce sectors. Adept at API integration, database optimization, and agile methodologies.</p>
+                            </div>
+
+                            <!-- Technical Skills (detailed) -->
+                            <div style="margin-bottom: 20px;">
+                                <h2 style="font-size: 20px; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 4px;">TECHNICAL SKILLS</h2>
+                                <table style="width:100%; font-size: 14px; border-collapse: collapse;">
+                                    <tr><td style="padding: 4px 0;"><strong>Backend:</strong> ASP.NET Core, .NET 6/8, MVC, Web API, C#, Entity Framework</td></tr>
+                                    <tr><td style="padding: 4px 0;"><strong>Frontend:</strong> HTML5, CSS3, JavaScript, React, Angular, Razor, Bootstrap</td></tr>
+                                    <tr><td style="padding: 4px 0;"><strong>Database:</strong> MS SQL Server (T-SQL, SSMS), MongoDB, SQL optimization</td></tr>
+                                    <tr><td style="padding: 4px 0;"><strong>Tools & Platforms:</strong> Jira, GitHub, Postman, AWS (EC2, S3), IIS, Agile/Scrum</td></tr>
+                                    <tr><td style="padding: 4px 0;"><strong>Languages:</strong> English (Fluent), Hindi (Native), Punjabi (Native), Tamil (Basic)</td></tr>
+                                </table>
+                            </div>
+
+                            <!-- Work Experience (full details) -->
+                            <div style="margin-bottom: 20px;">
+                                <h2 style="font-size: 20px; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 4px;">WORK EXPERIENCE</h2>
+                                
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;">
+                                        <span>Developer - I</span>
+                                        <span style="color: #475569;">Sep 2025 – Present</span>
+                                    </div>
+                                    <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">Evon Technologies, Dehradun</p>
+                                    <ul style="margin: 4px 0 0 20px; font-size: 14px; color: #334155;">
+                                        <li>Translate client requirements into efficient technical solutions; improve system performance through optimization and refactoring.</li>
+                                        <li>Maintain and enhance existing .NET applications, ensuring high stability and scalability.</li>
+                                    </ul>
+                                </div>
+
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;">
+                                        <span>Dotnet Developer (E-2)</span>
+                                        <span style="color: #475569;">May 2025 – Sep 2025</span>
+                                    </div>
+                                    <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">MBD Group, Delhi</p>
+                                    <ul style="margin: 4px 0 0 20px; font-size: 14px;">
+                                        <li>Developed full-stack applications and RESTful APIs; integrated Salesforce API with ERP, HRMS, and TADA systems.</li>
+                                        <li>Managed server deployments and followed Agile methodologies for timely delivery.</li>
+                                    </ul>
+                                </div>
+
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;">
+                                        <span>Software Developer</span>
+                                        <span style="color: #475569;">Oct 2024 – Apr 2025</span>
+                                    </div>
+                                    <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">Rapid Workforce Solutions, Delhi</p>
+                                    <ul style="margin: 4px 0 0 20px; font-size: 14px;">
+                                        <li>Led backend and frontend development using C#, Razor, SQL Server for APMS (Audit Para Monitoring System), a government project.</li>
+                                        <li>Optimized queries and implemented role-based access control.</li>
+                                    </ul>
+                                </div>
+
+                                <div style="margin-bottom: 16px;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;">
+                                        <span>Dotnet Developer</span>
+                                        <span style="color: #475569;">Nov 2021 – Oct 2023</span>
+                                    </div>
+                                    <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">Belwo Services Inc., Mohali</p>
+                                    <ul style="margin: 4px 0 0 20px; font-size: 14px;">
+                                        <li>Built Automation Engine Tool for label printing; improved file processing accuracy by 30% through data-driven features.</li>
+                                        <li>Developed using ASP.NET MVC, C#, and MS SQL; collaborated with cross-functional teams.</li>
+                                    </ul>
+                                </div>
+
+                                <div style="margin-bottom: 8px;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;">
+                                        <span>Technical Support Engineer</span>
+                                        <span style="color: #475569;">Dec 2019 – May 2020</span>
+                                    </div>
+                                    <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">Divergent Infosoft, Delhi</p>
+                                    <ul style="margin: 4px 0 0 20px; font-size: 14px;">
+                                        <li>Managed FIITJEE database systems, generated Excel-based reports, and provided front-end modifications.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Education -->
+                            <div style="margin-bottom: 20px;">
+                                <h2 style="font-size: 20px; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 4px;">EDUCATION</h2>
+                                <div>
+                                    <p style="font-size: 16px; font-weight: 600; margin: 0;">Bachelor of Engineering (Computer Science)</p>
+                                    <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">Anna University | 2015 – 2019</p>
+                                    <p style="font-size: 14px; color: #334155;">CGPA: 6.5 | Relevant coursework: Data Structures, DBMS, Web Technologies</p>
+                                </div>
+                            </div>
+
+                            <!-- Key Projects (expanded) -->
+                            <div style="margin-bottom: 20px;">
+                                <h2 style="font-size: 20px; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 4px;">KEY PROJECTS</h2>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">CMS (Customer Management System)</p>
+                                        <p style="font-size: 13px;">Feb 2025 – Present | ASP.NET Core, C#, SQL</p>
+                                        <p style="font-size: 13px;">Enterprise web app for customer data & workflows.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">DMS: TRV Portal (TVS)</p>
+                                        <p style="font-size: 13px;">Dec 2024 – Jan 2025 | ASP.NET Core, React, SQL</p>
+                                        <p style="font-size: 13px;">Dealer management with auth & approval workflows.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">APMS (Audit Para Monitoring System)</p>
+                                        <p style="font-size: 13px;">Oct 2024 – Apr 2025 | ASP.NET, Razor, SQL</p>
+                                        <p style="font-size: 13px;">Government app for audit para validation.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">IMBDIAN HRMS Portal</p>
+                                        <p style="font-size: 13px;">May 2024 – Jun 2025 | ASP.NET, C#, SQL</p>
+                                        <p style="font-size: 13px;">HRMS with role-based permissions.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">MBD TADA (Travel Allowance)</p>
+                                        <p style="font-size: 13px;">May 2024 – Jun 2025 | ASP.NET Web Forms</p>
+                                        <p style="font-size: 13px;">TA/DA management for sales teams.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">File Consolidation Tool</p>
+                                        <p style="font-size: 13px;">Jan 2024 – Mar 2024 | ASP.NET Core, Razor</p>
+                                        <p style="font-size: 13px;">Consolidates Excel data into structured output.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">PDF Comparison App</p>
+                                        <p style="font-size: 13px;">Jan 2023 – May 2023 | ASP.NET Core, Java JAR</p>
+                                        <p style="font-size: 13px;">Compares PDFs and highlights variations.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">Australian Recruitment Portal</p>
+                                        <p style="font-size: 13px;">May 2023 – Aug 2023 | ASP.NET MVC, EF</p>
+                                        <p style="font-size: 13px;">Job posting and candidate application platform.</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-weight: 600; margin: 0;">Label Printing Engine</p>
+                                        <p style="font-size: 13px;">Nov 2021 – Oct 2023 | ASP.NET MVC, C#</p>
+                                        <p style="font-size: 13px;">Automation tool for complex label printing.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Achievements & Certifications -->
+                            <div style="margin-bottom: 15px;">
+                                <h2 style="font-size: 20px; color: #0f172a; border-bottom: 2px solid #2563eb; padding-bottom: 4px;">ACHIEVEMENTS</h2>
+                                <ul style="font-size: 14px; margin: 5px 0 0 20px;">
+                                    <li>Improved file processing accuracy by 30% through automation features.</li>
+                                    <li>Successfully delivered 11+ production-ready projects across domains.</li>
+                                    <li>Integrated Salesforce API with ERP and HRMS systems.</li>
+                                    <li>Experience with high-traffic government applications (APMS).</li>
+                                </ul>
+                            </div>
+
+                            <!-- Footer note -->
+                            <div style="text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: 15px;">
+                                Suraj Kumar – Full Stack Developer | Updated: ${new Date().toLocaleDateString()}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                const options = {
+                    margin: [0, 0, 0, 0],   // we use inner 5% padding, so outer margin 0
+                    filename: 'Suraj_Kumar_FullStack_Developer_Resume.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, letterRendering: true, logging: false },
+                    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+
+                await html2pdf().from(resumeContent).set(options).save();
+                
+            } catch (error) {
+                console.error('PDF Generation Error:', error);
+                alert('Error generating PDF. Please try again.');
+            } finally {
+                loadingOverlay.classList.remove('active');
+            }
+        }
+
+        //==========================================
+        // Smooth Scrolling
+        //==========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        //==========================================
+        // Navbar Scroll Effect
+        //==========================================
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = 'var(--shadow)';
+            }
+        });
+
+        //==========================================
+        // Event Listeners for download buttons
+        //==========================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtns = [
+                document.getElementById('downloadResumeBtn'),
+                document.getElementById('navDownloadBtn'),
+                document.getElementById('modalDownloadBtn')
+            ];
+
+            downloadBtns.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', generatePDFResume);
+                }
+            });
         });
     </script>
-
 </body>
-
 </html>
