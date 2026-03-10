@@ -1569,7 +1569,7 @@
                         <div class="line"></div>
                         
                         <div class="experience-item">
-                            <h6>Developer - I</h6>
+                            <h6>Developer - 2</h6>
                             <div class="company">Evon Technologies, Dehradun</div>
                             <div class="duration">September 2025 - Present</div>
                             <p class="subtitle">Translate client requirements into efficient technical solutions. Improve system performance and stability through optimization and bug fixes.</p>
@@ -2169,10 +2169,10 @@
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="modalDownloadBtn">
+                    <!-- <button type="button" class="btn btn-primary" id="modalDownloadBtn">
                         <i class="ti-download"></i>
                         Download Resume
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -2271,7 +2271,7 @@
                             
                             <div style="margin-bottom: 16px;">
                                 <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px;">
-                                    <span>Developer - I</span>
+                                    <span>Developer - 2</span>
                                     <span style="color: #475569;">Sep 2025 – Present</span>
                                 </div>
                                 <p style="color: #2563eb; font-size: 14px; margin: 2px 0;">Evon Technologies, Dehradun</p>
@@ -2467,7 +2467,7 @@
             // 5% margin on all sides (top, bottom, left, right)
             const options = {
                 margin: [0.3, 0.3, 0.3, 0.3],  // 5% = 0.5 inches in jsPDF
-                filename: 'Suraj_Kumarpdf',
+                filename: 'Suraj_Kumar',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, letterRendering: true, logging: false },
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
@@ -2515,17 +2515,38 @@
         // Event Listeners for download buttons
         //==========================================
         document.addEventListener('DOMContentLoaded', function() {
-            const downloadBtns = [
-                document.getElementById('downloadResumeBtn'),
-                document.getElementById('navDownloadBtn'),
-                document.getElementById('modalDownloadBtn')
-            ];
-
-            downloadBtns.forEach(btn => {
-                if (btn) {
-                    btn.addEventListener('click', generatePDFResume);
-                }
-            });
+            // Header download button
+            const headerBtn = document.getElementById('downloadResumeBtn');
+            if (headerBtn) {
+                headerBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    generatePDFResume();
+                });
+            }
+            
+            // Navbar download button
+            const navBtn = document.getElementById('navDownloadBtn');
+            if (navBtn) {
+                navBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    generatePDFResume();
+                });
+            }
+            
+            // Modal download button - handle Bootstrap modal interference
+            const modalBtn = document.getElementById('modalDownloadBtn');
+            if (modalBtn) {
+                modalBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Close the modal first
+                    $('#profileModal').modal('hide');
+                    // Then generate the PDF after a short delay to allow modal to close
+                    setTimeout(function() {
+                        generatePDFResume();
+                    }, 300);
+                });
+            }
         });
     </script>
 </body>
